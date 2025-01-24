@@ -25,7 +25,7 @@ This project is built as part of the **DATA226** course on Data Engineering.
 
 - **Python**: Programming language for scripting and data manipulation.
 - **SQL**: For querying and managing data in the data warehouse.
-- **Apache Airflow** (if applicable): For automating ETL pipelines.
+- **Apache Airflow**: For automating ETL pipelines.
 - **Snowflake** : Data warehouse For storing and querying large datasets.
 - **Pandas / NumPy**: For data manipulation and processing.
 - **Spotify API**: For accessing Spotify data such as song details, user preferences, etc.
