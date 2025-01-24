@@ -1,0 +1,26 @@
+build_mau:
+  outputs:
+    dev:
+      account: '{{ env_var(''DBT_ACCOUNT'') }}'
+      database: '{{ env_var(''DBT_DATABASE'') }}'
+      password: '{{ env_var(''DBT_PASSWORD'') }}'
+      role: '{{ env_var(''DBT_ROLE'') }}'
+      schema: analytics
+      threads: 1
+      type: '{{ env_var(''DBT_TYPE'') }}'
+      user: '{{ env_var(''DBT_USER'') }}'
+      warehouse: '{{ env_var(''DBT_WAREHOUSE'') }}'
+  target: dev
+spotify_analysis:
+  outputs:
+    dev:
+      account: MQLBZCI-VBB24049
+      database: dev
+      password: uHYYp45UjZfywpr
+      role: ACCOUNTADMIN
+      schema: analytics
+      threads: 1
+      type: snowflake
+      user: mayback999
+      warehouse: compute_wh
+  target: dev

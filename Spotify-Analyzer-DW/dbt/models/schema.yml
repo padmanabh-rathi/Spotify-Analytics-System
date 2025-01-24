@@ -1,0 +1,95 @@
+# version: 2
+
+# # Source Definitions
+# sources:
+#   - name: raw_data
+#     description: "Raw data source from Snowflake."
+#     tables:
+#       - name: fact_music_streams
+#         description: "Fact table containing music streams data."
+#       - name: dim_artist
+#         description: "Dimension table containing artist information."
+
+# # Model Definitions
+# models:
+#   - name: streams_popularity_artist
+#     description: "Model to calculate total streams, average rank, and popularity by artist."
+#     data_tests:
+#       - unique:
+#           column_name: artist_name
+#     columns:
+#       - name: artist_name
+#         description: "Name of the artist."
+#         data_tests:
+#           - not_null
+#           - unique
+#   - name: weekly_trend_analysis
+#     description: "Model to analyze weekly trends in streams and ranks."
+#     columns:
+#       - name: date_key
+#         description: "Date key representing the week."
+#         data_tests:
+#           - not_null
+#           - unique
+#       - name: total_streams
+#         description: "Total streams aggregated by week."
+#         data_tests:
+#           - numeric
+version: 2
+
+# Source Definitions
+sources:
+  - name: raw_data
+    description: "Raw data source from Snowflake."
+    tables:
+      - name: fact_music_streams
+        description: "Fact table containing music streams data."
+      - name: dim_artist
+        description: "Dimension table containing artist information."
+
+# Model Definitions
+models:
+  - name: streams_popularity_artist
+    description: "Model to calculate total streams, average rank, and popularity by artist."
+    columns:
+      - name: artist_name
+        description: "Name of the artist."
+        tests:
+          - not_null
+          - unique
+      - name: total_streams
+        description: "Total streams for the artist."
+        tests:
+          - not_null
+          - dbt_utils.type_string:
+              type: NUMBER
+      - name: avg_rank
+        description: "Average rank of the artist."
+        tests:
+          - dbt_utils.type_string:
+              type: NUMBER
+      - name: avg_popularity
+        description: "Average popularity score of the artist."
+        tests:
+          - dbt_utils.type_string:
+              type: NUMBER
+
+  - name: weekly_trend_analysis
+    description: "Model to analyze weekly trends in streams and ranks."
+    columns:
+      - name: date_key
+        description: "Date key representing the week."
+        tests:
+          - not_null
+          - unique
+      - name: total_streams
+        description: "Total streams aggregated by week."
+        tests:
+          - not_null
+          - dbt_utils.type_string:
+              type: NUMBER
+      - name: avg_rank
+        description: "Average rank aggregated by week."
+        tests:
+          - dbt_utils.type_string:
+              type: NUMBER

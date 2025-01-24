@@ -1,0 +1,26 @@
+version: 2
+sources:
+  - name: raw_data
+    database: dev 
+    schema: raw_data
+    description: "Schema which stores raw tables (ETL)"
+    tables:
+      - name: FACT_MUSIC_STREAMS
+        identifier: FACT_MUSIC_STREAMS
+        description: "Fact table for spotify data"
+      - name: DIM_DATE
+        identifier: DIM_DATE
+        description: "Dimension table for date"
+  - name: analytics
+    database: dev
+    schema: analytics
+    description: "Schema which stores analytics tables (ELT)"
+    tables:
+      - name: streams_popularity_artist
+        identifier: streams_popularity_artist
+        description: "Calculates Total stream, average rank and average popularity for each artist"      
+      - name: weekly_trend_analysis
+        identifier: weekly_trend_analysis
+        description: "To analyze weekly trends in streams and rank"
+      
+ 
